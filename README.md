@@ -84,7 +84,7 @@ Currently focused on:
 
 📬 Connect with Me  
 LinkedIn: praveshturkar0719  
-GitHub: @Pravesh-turkar  
+GitHub: Pravesh-turkar0719
 Email: praveshturkar75@gmail.com
-
+  
 Developed with ❤️ by Pravesh Turkar.
