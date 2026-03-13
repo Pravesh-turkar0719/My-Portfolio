@@ -1,38 +1,507 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ============ ROOT VARIABLES ============ */
+:root {
+  --sakura-deep: #C74B7F;
+  --sakura-main: #D4547A;
+  --sakura-medium: #E8527A;
+  --sakura-light: #F7C5D5;
+  --sakura-pale: #FDF0F4;
+  --sakura-petal: #FADADD;
+  /* --- NEW SKY BLUE THEME --- */
+  --bg-main: #E3F2FD;
+  /* Light Sky Blue (Main background) */
+  --bg-section: #E3F2FD;
+  /* Soft Azure (Section background) */
+  --sky-accent: #B3E5FC;
+  /* Brighter Sky Blue */
+  /* Text and Accents */
+  --text-dark: #1A2A36;
+  /* Dark Navy-Tinted Grey for better contrast on blue */
+  --text-medium: #455A64;
+  --text-muted: #78909C;
+  --green-accent: #6B9E6A;
+  --green-light: #E8F5E8;
+  --white: #FFFFFF;
+  /* Borders and Shadows */
+  --border: #BBDDF2;
+  /* Light Blue Border to match the sky */
+  --shadow-pink: rgba(212, 84, 122, 0.12);
+  --shadow-dark: rgba(26, 42, 54, 0.08);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ============ GLOBAL RESET ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+.portfolio-root {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* ============ SAKURA PETAL ANIMATION ============ */
+.sakura-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.petal {
+  position: absolute;
+  top: -60px;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(ellipse at 30% 30%, #FADADD, #FFB7C5);
+  /* Brighter pink for the sky */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  /* Gives them a slight "glow" against the blue */
+  border-radius: 50% 0 50% 0;
+  opacity: 0;
+  animation: petalFall linear infinite;
+  transform-origin: center;
+}
+
+.petal:nth-child(1) {
+  left: 5%;
+  animation-duration: 9s;
+  animation-delay: 0s;
+  width: 12px;
+  height: 12px;
+}
+
+.petal:nth-child(2) {
+  left: 12%;
+  animation-duration: 11s;
+  animation-delay: 1.5s;
+  width: 10px;
+  height: 10px;
+}
+
+.petal:nth-child(3) {
+  left: 22%;
+  animation-duration: 8s;
+  animation-delay: 0.8s;
+  width: 14px;
+  height: 14px;
+}
+
+.petal:nth-child(4) {
+  left: 33%;
+  animation-duration: 12s;
+  animation-delay: 2s;
+  width: 8px;
+  height: 8px;
+}
+
+.petal:nth-child(5) {
+  left: 44%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+  width: 16px;
+  height: 16px;
+}
+
+.petal:nth-child(6) {
+  left: 55%;
+  animation-duration: 9s;
+  animation-delay: 1s;
+  width: 11px;
+  height: 11px;
+}
+
+.petal:nth-child(7) {
+  left: 65%;
+  animation-duration: 13s;
+  animation-delay: 0.3s;
+  width: 9px;
+  height: 9px;
+}
+
+.petal:nth-child(8) {
+  left: 74%;
+  animation-duration: 8s;
+  animation-delay: 2.5s;
+  width: 13px;
+  height: 13px;
+}
+
+.petal:nth-child(9) {
+  left: 83%;
+  animation-duration: 11s;
+  animation-delay: 1.8s;
+  width: 10px;
+  height: 10px;
+}
+
+.petal:nth-child(10) {
+  left: 92%;
+  animation-duration: 9.5s;
+  animation-delay: 0.5s;
+  width: 15px;
+  height: 15px;
+}
+
+.petal:nth-child(11) {
+  left: 8%;
+  animation-duration: 10.5s;
+  animation-delay: 4s;
+  width: 12px;
+  height: 12px;
+}
+
+.petal:nth-child(12) {
+  left: 18%;
+  animation-duration: 8.5s;
+  animation-delay: 5s;
+  width: 10px;
+  height: 10px;
+}
+
+.petal:nth-child(13) {
+  left: 48%;
+  animation-duration: 12.5s;
+  animation-delay: 3.5s;
+  width: 14px;
+  height: 14px;
+}
+
+.petal:nth-child(14) {
+  left: 70%;
+  animation-duration: 10s;
+  animation-delay: 6s;
+  width: 9px;
+  height: 9px;
+}
+
+.petal:nth-child(15) {
+  left: 88%;
+  animation-duration: 9s;
+  animation-delay: 4.5s;
+  width: 13px;
+  height: 13px;
+}
+
+@keyframes petalFall {
+  0% {
+    top: -60px;
+    opacity: 0;
+    transform: rotate(0deg) translateX(0px);
   }
-  to {
-    transform: rotate(360deg);
+
+  10% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    top: 110vh;
+    opacity: 0;
+    transform: rotate(720deg) translateX(80px);
+  }
+}
+
+/* ============ SECTION STYLES ============ */
+.section {
+  position: relative;
+  padding: 80px 0;
+}
+
+.section-alt {
+  background-color: var(--bg-section);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sakura-petal);
+  color: var(--sakura-deep);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.section-title span {
+  color: var(--sakura-main);
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ============ SAKURA DIVIDER ============ */
+.sakura-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 40px 0;
+}
+
+.sakura-divider::before,
+.sakura-divider::after {
+  content: '';
+  height: 1.5px;
+  background: linear-gradient(to right, var(--border), transparent);
+  flex: 1;
+}
+
+.sakura-divider::before {
+  background: linear-gradient(to right, transparent, var(--border));
+}
+
+.sakura-petal-icon {
+  width: 10px;
+  height: 10px;
+  background: var(--sakura-light);
+  border-radius: 50% 0 50% 0;
+  transform: rotate(45deg);
+}
+
+/* ============ SKILL BAR ============ */
+.skill-bar-bg {
+  background: var(--sakura-pale);
+  border-radius: 100px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(to right, var(--sakura-light), var(--sakura-main));
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+}
+
+/* ============ CARD HOVER ============ */
+.project-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px var(--shadow-pink);
+  border-color: var(--sakura-light);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* ============ BUTTON STYLES ============ */
+.btn-sakura {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sakura-main);
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-sakura:hover {
+  background: var(--sakura-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(199, 75, 127, 0.3);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--sakura-main);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 100px;
+  border: 2px solid var(--sakura-light);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--sakura-pale);
+  border-color: var(--sakura-main);
+  transform: translateY(-2px);
+}
+
+/* ============ TAG BADGE ============ */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--sakura-pale);
+  color: var(--sakura-deep);
+  border: 1px solid var(--border);
+}
+
+/* ============ TIMELINE ============ */
+.timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--sakura-main), var(--sakura-light), transparent);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--sakura-main);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--sakura-light);
+  flex-shrink: 0;
+}
+
+.timeline-dot.active {
+  background: var(--sakura-deep);
+  box-shadow: 0 0 0 4px var(--sakura-petal), 0 0 12px rgba(199, 75, 127, 0.4);
+  animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px var(--sakura-petal), 0 0 12px rgba(199, 75, 127, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px var(--sakura-petal), 0 0 20px rgba(199, 75, 127, 0.3);
+  }
+}
+
+/* ============ FLOATING ELEMENTS ============ */
+.float-cherry {
+  animation: floatCherry 3s ease-in-out infinite;
+}
+
+@keyframes floatCherry {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ============ FADE IN ANIMATION ============ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ SCROLLBAR STYLE ============ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sakura-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sakura-main);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
   }
 }
