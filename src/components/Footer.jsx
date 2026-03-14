@@ -245,7 +245,7 @@ export default function Footer() {
                             fontFamily: "'Nunito', sans-serif",
                         }}
                     >
-                        © 2025 {personal.name}. Made with{" "}
+                        © 2026 {personal.name}. Made with{" "}
                         <Heart size={12} color="#D4547A" fill="#D4547A" />
                         {" "}and lots of{" "}
                         <Cherry size={12} color="#D4547A" />
