@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { portfolioData } from "./mock";
 import { Mail, Phone, MapPin, Linkedin, Send, MessageSquare, Github, Cherry } from "lucide-react";
+// 1. Import the Formspree hooks
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
     const { personal } = portfolioData;
     const ref = useRef(null);
-    const [form, setForm] = useState({ name: "", email: "", message: "" });
-    const [submitted, setSubmitted] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // 2. Initialize Formspree with your ID
+    const [state, handleSubmit] = useForm("xbdzakew");
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -19,32 +21,6 @@ export default function Contact() {
         ref.current?.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-
-        try {
-            // Replace "YOUR_FORM_ID" with your actual ID from Formspree
-            const response = await fetch("https://formspree.io/f/xbdzakew", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
-            });
-
-            if (response.ok) {
-                setSubmitted(true);
-                setForm({ name: "", email: "", message: "" });
-                setTimeout(() => setSubmitted(false), 5000);
-            } else {
-                alert("Oops! Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            alert("Network error. Please check your connection.");
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     const inputStyle = {
         width: "100%",
@@ -76,6 +52,7 @@ export default function Contact() {
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 40, alignItems: "start" }}>
+                    {/* Left side remains the same */}
                     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                         <div className="fade-up" style={{ transitionDelay: "0.1s" }}>
                             <div style={{ background: "linear-gradient(135deg, #D4547A, #C74B7F)", borderRadius: 20, padding: 28, color: "white", boxShadow: "0 12px 40px rgba(199, 75, 127, 0.25)" }}>
@@ -100,7 +77,7 @@ export default function Contact() {
                                 ))}
                             </div>
                         </div>
-
+                        {/* Social Links Box */}
                         <div className="fade-up" style={{ transitionDelay: "0.2s" }}>
                             <div style={{ background: "#FFFFFF", border: "1.5px solid #F4C2CC", borderRadius: 20, padding: 24, boxShadow: "0 4px 20px rgba(212, 84, 122, 0.06)" }}>
                                 <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "#C74B7F", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>Connect Online</p>
@@ -110,9 +87,7 @@ export default function Contact() {
                                         { icon: <Github size={18} />, label: "GitHub", handle: "praveshturkar", href: personal.github },
                                         { icon: <Mail size={18} />, label: "Email", handle: personal.email, href: `mailto:${personal.email}` },
                                     ].map((s) => (
-                                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#FFF9FB", border: "1px solid #F4C2CC", borderRadius: 12, textDecoration: "none", transition: "all 0.2s ease" }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.background = "#FDF0F4"; e.currentTarget.style.borderColor = "#D4547A"; e.currentTarget.style.transform = "translateX(4px)"; }}
-                                            onMouseLeave={(e) => { e.currentTarget.style.background = "#FFF9FB"; e.currentTarget.style.borderColor = "#F4C2CC"; e.currentTarget.style.transform = "translateX(0)"; }}>
+                                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#FFF9FB", border: "1px solid #F4C2CC", borderRadius: 12, textDecoration: "none", transition: "all 0.2s ease" }}>
                                             <div style={{ color: "#D4547A" }}>{s.icon}</div>
                                             <div>
                                                 <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.82rem", fontWeight: 700, color: "#1A0810", lineHeight: 1 }}>{s.label}</p>
@@ -125,33 +100,38 @@ export default function Contact() {
                         </div>
                     </div>
 
+                    {/* Form Section */}
                     <div className="fade-up" style={{ transitionDelay: "0.2s" }}>
                         <div style={{ background: "#FFFFFF", border: "1.5px solid #F4C2CC", borderRadius: 24, padding: 36, boxShadow: "0 8px 32px rgba(212, 84, 122, 0.08)" }}>
                             <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: "1.2rem", fontWeight: 700, color: "#1A0810", marginBottom: 8 }}>Send a Message</h3>
                             <p style={{ fontSize: "0.87rem", color: "#9B7080", marginBottom: 28 }}>I'll get back to you within 24 hours.</p>
 
-                            {submitted ? (
+                            {/* 3. Handle the Success State */}
+                            {state.succeeded ? (
                                 <div style={{ background: "rgba(107, 158, 106, 0.1)", border: "1px solid rgba(107, 158, 106, 0.3)", borderRadius: 14, padding: "20px 24px", textAlign: "center" }}>
                                     <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, color: "#5A8A59", fontSize: "1rem", marginBottom: 4 }}>Message Sent!</p>
-                                    <p style={{ fontSize: "0.87rem", color: "#6B9E6A" }}>Thanks for reaching out. Check your inbox soon!</p>
+                                    <p style={{ fontSize: "0.87rem", color: "#6B9E6A" }}>Thanks for reaching out, Pravesh. Check your inbox soon!</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
                                     <div>
-                                        <label style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Your Name</label>
-                                        <input name="name" type="text" placeholder="e.g. Alex Johnson" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required style={inputStyle} onFocus={(e) => { e.target.style.borderColor = "#D4547A"; e.target.style.boxShadow = "0 0 0 3px rgba(212, 84, 122, 0.12)"; }} onBlur={(e) => { e.target.style.borderColor = "#F4C2CC"; e.target.style.boxShadow = "none"; }} />
+                                        <label htmlFor="full-name" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Your Name</label>
+                                        <input id="full-name" name="name" type="text" placeholder="e.g. Alex Johnson" required style={inputStyle} />
+                                        <ValidationError prefix="Name" field="name" errors={state.errors} />
                                     </div>
                                     <div>
-                                        <label style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Email Address</label>
-                                        <input name="email" type="email" placeholder="e.g. hello@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required style={inputStyle} onFocus={(e) => { e.target.style.borderColor = "#D4547A"; e.target.style.boxShadow = "0 0 0 3px rgba(212, 84, 122, 0.12)"; }} onBlur={(e) => { e.target.style.borderColor = "#F4C2CC"; e.target.style.boxShadow = "none"; }} />
+                                        <label htmlFor="email" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Email Address</label>
+                                        <input id="email" name="email" type="email" placeholder="e.g. hello@example.com" required style={inputStyle} />
+                                        <ValidationError prefix="Email" field="email" errors={state.errors} />
                                     </div>
                                     <div>
-                                        <label style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Message</label>
-                                        <textarea name="message" placeholder="Tell me about your project..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={5} style={{ ...inputStyle, resize: "vertical", minHeight: 120 }} onFocus={(e) => { e.target.style.borderColor = "#D4547A"; e.target.style.boxShadow = "0 0 0 3px rgba(212, 84, 122, 0.12)"; }} onBlur={(e) => { e.target.style.borderColor = "#F4C2CC"; e.target.style.boxShadow = "none"; }} />
+                                        <label htmlFor="message" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#5C2E40", display: "block", marginBottom: 8 }}>Message</label>
+                                        <textarea id="message" name="message" placeholder="Tell me about your project..." required rows={5} style={{ ...inputStyle, resize: "vertical", minHeight: 120 }} />
+                                        <ValidationError prefix="Message" field="message" errors={state.errors} />
                                     </div>
-                                    <button type="submit" className="btn-sakura" style={{ justifyContent: "center" }} disabled={isSubmitting}>
+                                    <button type="submit" className="btn-sakura" style={{ justifyContent: "center" }} disabled={state.submitting}>
                                         <Send size={16} />
-                                        {isSubmitting ? "Sending..." : "Send Message"}
+                                        {state.submitting ? "Sending..." : "Send Message"}
                                     </button>
                                 </form>
                             )}
