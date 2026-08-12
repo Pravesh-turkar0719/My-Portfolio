@@ -8,7 +8,7 @@ export const portfolioData = {
         email: "praveshturkar75@gmail.com",
         linkedin: "https://www.linkedin.com/in/praveshturkar0719",
         github: "https://github.com/Pravesh-turkar0719",
-        about: "I am a third-year B.Tech student with a strong interest in frontend development. I enjoy building interactive and user-friendly web interfaces while focusing on clean design and performance. With strengths in creative thinking and problem solving, I like turning ideas into functional digital experiences and continuously improving my development skills through hands-on projects.",
+        about: "I am a fourth-year B.Tech student with a strong interest in frontend development. I enjoy building interactive and user-friendly web interfaces while focusing on clean design and performance. With strengths in creative thinking and problem solving, I like turning ideas into functional digital experiences and continuously improving my development skills through hands-on projects.",
         avatar: null,
     },
 
