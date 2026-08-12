@@ -127,7 +127,7 @@ export default function Hero() {
                                     {personal.name.split(" ")[0]}{" "}
                                     <span
                                         style={{
-                                            background: "linear-gradient(135deg, #D4547A, #101010)",
+                                            background: "linear-gradient(135deg, #D4547A, #181a1b)",
                                             WebkitBackgroundClip: "text",
                                             WebkitTextFillColor: "transparent",
                                             backgroundClip: "text",
