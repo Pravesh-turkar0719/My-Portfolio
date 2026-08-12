@@ -189,7 +189,7 @@ export default function About() {
                         <div className="fade-up" style={{ transitionDelay: "0.4s" }}>
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
                                 {[
-                                    { number: "3rd", label: "Year B.Tech" },
+                                    { number: "4th", label: "Year B.Tech" },
                                     { number: "2+", label: "Projects Built" },
                                     { number: "7+", label: "Skills Mastered" },
                                 ].map((stat) => (
