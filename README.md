@@ -3,7 +3,7 @@
 
 A modern, responsive, and aesthetically pleasing portfolio built with **React.js**. This project features a unique "Sakura petals on Sky Blue" theme, utilizing smooth animations and a clean UI to showcase my journey as a Frontend Developer and B.Tech student.
 
-🚀 **[Visit My Portfolio](https://my-portfolio-psi-nine-43.vercel.app/)** ---
+🚀 **[Visit My Portfolio](my-portfolio-pravesh-turkar.vercel.app)** ---
 
 ## ✨ Features
 
