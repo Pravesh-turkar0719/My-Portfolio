@@ -170,7 +170,7 @@ export default function Hero() {
                                     }}
                                 >
                                     Passionate about creating beautiful, responsive web experiences.
-                                    Currently in my 3rd year of B.Tech at{" "}
+                                    Currently in my 4th year of B.Tech at{" "}
                                     <span style={{ color: "#D4547A", fontWeight: 600 }}>
                                         Siksha 'O' Anusandhan University
                                     </span>
